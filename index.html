@@ -44,7 +44,7 @@
         }
 
         .logo {
-            background-image: url('https://imgs.search.brave.com/yL8P0vf6H1cW9tqKRhwUUeTRnGHJzwEt816b1xQGgIc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9sb2dv/d2lrLmNvbS9jb250/ZW50L3VwbG9hZHMv/aW1hZ2VzL2FtYXpv/bjY3MDcuanBn');
+            background-image: url('https://imgs.search.brave.com/yL8P0vf6H1cW9tqKRhwUUeTRnGHJzwEt816b1xQGgIc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9sb2dv/d2lrLmCvbS9jb250/ZW50L3VwbG9hZHMv/aW1hZ2VzL2FtYXpv/bjY3MDcuanBn');
             background-size: contain;
             background-repeat: no-repeat;
             height: 40px;
@@ -184,6 +184,15 @@
             margin-bottom: 10px;
             width: 90%;
             max-width: 800px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-msg img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 4px;
         }
 
         .hero-msg a {
@@ -363,6 +372,10 @@
             .hero-section {
                 min-height: 250px;
             }
+
+            .hero-msg img {
+                max-width: 80px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -404,6 +417,12 @@
 
             .hero-msg {
                 font-size: 0.8rem;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .hero-msg img {
+                max-width: 60px;
             }
 
             .box-img {
@@ -437,6 +456,10 @@
             .hero-msg {
                 padding: 8px;
                 font-size: 0.75rem;
+            }
+
+            .hero-msg img {
+                max-width: 50px;
             }
 
             .box-content h2 {
@@ -520,6 +543,7 @@
     </header>
     <div class="hero-section">
         <div class="hero-msg">
+            <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37897176_WLA-TS_Hero_1x._SY304_CB630557391_.jpg" alt="Amazon India Promo">
             You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery. <a href="https://www.amazon.in/">Click here to go to amazon.in</a>
         </div>
     </div>
