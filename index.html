@@ -6,42 +6,499 @@
     <link rel="icon" href="https://imgs.search.brave.com/yL8P0vf6H1cW9tqKRhwUUeTRnGHJzwEt816b1xQGgIc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9sb2dv/d2lrLmNvbS9jb250/ZW50L3VwbG9hZHMv/aW1hZ2VzL2FtYXpv/bjY3MDcuanBn">
     <title>Amazon speed less, smile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f3f3;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #131921;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #131921;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        .logo {
+            background-image: url('https://imgs.search.brave.com/yL8P0vf6H1cW9tqKRhwUUeTRnGHJzwEt816b1xQGgIc/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9sb2dv/d2lrLmNvbS9jb250/ZW50L3VwbG9hZHMv/aW1hZ2VzL2FtYXpv/bjY3MDcuanBn');
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 40px;
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .nav-address, .nav-signin, .nav-return, .nav-cart {
+            padding: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .nav-address {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .add-icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .add-first, .nav-second {
+            font-size: 0.85rem;
+        }
+
+        .nav-second {
+            font-weight: 700;
+        }
+
+        .nav-search {
+            display: flex;
+            flex: 1;
+            max-width: 700px;
+            height: 40px;
+            margin: 0 10px;
+        }
+
+        .search-select {
+            padding: 5px;
+            border: none;
+            background-color: #f3f3f3;
+            border-radius: 4px 0 0 4px;
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .search-icon {
+            background-color: #febd69;
+            padding: 8px 12px;
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .border:hover {
+            border: 1px solid white;
+            border-radius: 2px;
+        }
+
+        .nav-cart {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Panel */
+        .panel {
+            background-color: #232f3e;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            flex-wrap: wrap;
+        }
+
+        .panel-all {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .panel-ops {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .panel-ops p {
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .panel-deals {
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-image: url('https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37897176_WLA-TS_Hero_1x._SY304_CB630557391_.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 350px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .hero-msg {
+            background-color: white;
+            padding: 10px 14px;
+            text-align: center;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero-msg a {
+            color: #007185;
+            text-decoration: none;
+        }
+
+        .hero-msg a:hover {
+            text-decoration: underline;
+        }
+
+        /* Shop Section */
+        .shop-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .box-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            margin: 10px 0;
+        }
+
+        .box-content h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .box-content a {
+            color: #007185;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .box-content a:hover {
+            text-decoration: underline;
+        }
+
+        .box-middle {
+            grid-column: span 2;
+        }
+
+        .mybox {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .middle-img {
+            background-size: cover;
+            background-position: center;
+            flex: 1 1 150px;
+            max-width: 200px;
+        }
+
+        /* Footer */
+        .foot-panel1 {
+            background-color: #37475a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .foot-panel1:hover {
+            background-color: #485769;
+        }
+
+        .foot-panel2 {
+            background-color: #232f3e;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            padding: 40px 20px;
+            gap: 20px;
+        }
+
+        .foot-panel2 ul p {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .foot-panel2 ul a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .foot-panel2 ul a:hover {
+            text-decoration: underline;
+        }
+
+        .foot-panel3 {
+            background-color: #232f3e;
+            border-top: 1px solid #3a4553;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .foot-panel4 {
+            background-color: #131921;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+
+        .pages a {
+            color: #ddd;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .pages a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 10px;
+        }
+
+        /* Mobile Menu */
+        .nav-menu {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: #131921;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .shop-section {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .box-middle {
+                grid-column: span 1;
+            }
+
+            .box-img {
+                height: 200px;
+            }
+
+            .hero-section {
+                min-height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-address, .nav-signin, .nav-return, .nav-cart {
+                margin: 10px 0;
+            }
+
+            .nav-search {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .panel {
+                display: none;
+            }
+
+            .panel.active {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .panel-ops {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-msg {
+                font-size: 0.8rem;
+            }
+
+            .box-img {
+                height: 150px;
+            }
+
+            .middle-img {
+                width: 100px !important;
+                height: 100px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo {
+                width: 80px;
+            }
+
+            .logo {
+                height: 30px;
+            }
+
+            .search-select, .search-input, .search-icon {
+                height: 35px;
+                font-size: 0.8rem;
+            }
+
+            .hero-section {
+                min-height: 150px;
+            }
+
+            .hero-msg {
+                padding: 8px;
+                font-size: 0.75rem;
+            }
+
+            .box-content h2 {
+                font-size: 1rem;
+            }
+
+            .box-img {
+                height: 120px;
+            }
+
+            .foot-panel2 {
+                grid-template-columns: 1fr;
+            }
+
+            .foot-panel2 ul p {
+                font-size: 0.9rem;
+            }
+
+            .foot-panel2 ul a {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="navbar">
-            <div class="nav-logo border">
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="nav-logo">
                 <div class="logo"></div>
             </div>
-            <div class="nav-address border">
-                <p class="add-first">Deliver to </p>
-                <div class="add-icon">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p class="add-second">India</p>
+            <div class="nav-menu">
+                <div class="nav-address border">
+                    <p class="add-first">Deliver to</p>
+                    <div class="add-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p class="add-second">India</p>
+                    </div>
                 </div>
-            </div>
-            <div class="nav-search">
-                <select class="search-select">
-                    <option>All</option>
-                </select>
+                <div class="nav-search">
+                    <select class="search-select">
+                        <option>All</option>
+                    </select>
                     <input placeholder="Search Amazon" class="search-input">
                     <div class="search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-            </div>
-            <div class="nav-singin border">
-                <p><span>Hello,sign in</span></p>
-                <p class="nav-second">Account & Lists</p>
-            </div>
-            <div class="nav-return border">
-                <p><span>return</span></p>
-                <p class="nav-second">& Orders</p>
-            </div>
-            <div class="nav-cart border">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Cart
+                </div>
+                <div class="nav-signin border">
+                    <p><span>Hello, sign in</span></p>
+                    <p class="nav-second">Account & Lists</p>
+                </div>
+                <div class="nav-return border">
+                    <p><span>return</span></p>
+                    <p class="nav-second">& Orders</p>
+                </div>
+                <div class="nav-cart border">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Cart
+                </div>
             </div>
         </div>
         <div class="panel">
@@ -61,193 +518,178 @@
             </div>
         </div>
     </header>
-
-
     <div class="hero-section">
         <div class="hero-msg">
-            You are on amazon.com. You can also shop on Amazon Indian for millions of products with fast local delivary. <a href="https://www.amazon.in/">Click here to go to amazon.in</a>
+            You are on amazon.com. You can also shop on Amazon India for millions of products with fast local delivery. <a href="https://www.amazon.in/">Click here to go to amazon.in</a>
         </div>
     </div>
-
     <div class="shop-section">
         <div class="box1 box">
-           <div class="box-content">
-             <h2>Clothes</h2> 
-             <div class="box-img" style="background-image: url('images/box1_image.jpg');"></div>
-             <p><a href="#">See more</a></p>
-           </div>
+            <div class="box-content">
+                <h2>Clothes</h2>
+                <div class="box-img" style="background-image: url('images/box1_image.jpg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
         </div>
         <div class="box2 box">
             <div class="box-content">
-                <h2>Health & Personal Care</h2> 
-               <div class="box-img" style="background-image: url('images/box2_image.jpg');"></div>
-               <p><a href="#">See more</a></p>
+                <h2>Health & Personal Care</h2>
+                <div class="box-img" style="background-image: url('images/box2_image.jpg');"></div>
+                <p><a href="#">See more</a></p>
             </div>
         </div>
         <div class="box3 box">
             <div class="box-content">
-                <h2>Furniture</h2> 
+                <h2>Furniture</h2>
                 <div class="box-img" style="background-image: url('images/box3_image.jpg');"></div>
                 <p><a href="#">See more</a></p>
             </div>
         </div>
         <div class="box4 box">
-             <div class="box-content">
-                <h2>Electronics</h2> 
+            <div class="box-content">
+                <h2>Electronics</h2>
                 <div class="box-img" style="background-image: url('images/box4_image.jpg');"></div>
                 <p><a href="#">See more</a></p>
             </div>
         </div>
-
         <div class="box5 box">
             <div class="box-content">
-              <h2>Beauty picks</h2> 
-              <div class="box-img" style="background-image: url('images/box5_image.jpg');"></div>
-              <p><a href="#">See more</a></p>
+                <h2>Beauty picks</h2>
+                <div class="box-img" style="background-image: url('images/box5_image.jpg');"></div>
+                <p><a href="#">See more</a></p>
             </div>
-         </div>
-         <div class="box6 box">
-             <div class="box-content">
-                 <h2>Pet Care</h2> 
+        </div>
+        <div class="box6 box">
+            <div class="box-content">
+                <h2>Pet Care</h2>
                 <div class="box-img" style="background-image: url('images/box6_image.jpg');"></div>
                 <p><a href="#">See more</a></p>
-             </div>
-         </div>
-         <div class="box7 box">
-             <div class="box-content">
-                 <h2>New Arrival in Toys</h2> 
-                 <div class="box-img" style="background-image: url('images/box7_image.jpg');"></div>
-                 <p><a href="#">See more</a></p>
-             </div>
-         </div>
-         <div class="box8 box">
-              <div class="box-content">
-                 <h2>Discover fasion trends</h2> 
-                 <div class="box-img" style="background-image: url('images/box8_image.jpg');"></div>
-                <p><a href="#">See more</a></p>
-             </div>
-        </div>
-       <div class="box-middle box">
-          <h2 class="para">Best Sellers in Kitchen, Dining & Dresses</h2>
-          <div class="mybox">
-
-                  <div class="middle-img" style="background-image: url('images/13.jpg'); height: 140px; width: 160px;"></div>
-                  <div class="middle-img" style="background-image: url('images/product_img.jpg'); height: 185px; width: 175px;"></div>
-                  <div class="middle-img" style="background-image: url('images/20.jpg'); height: 180px; width: 160px;"></div>
-                  <div class="middle-img" style="background-image: url('images/21.jpg'); height: 140px; width: 200px;"></div>
-                  <div class="middle-img" style="background-image: url('images/22.jpg'); height: 190px; width: 170px;"></div>
-                  <div class="middle-img" style="background-image: url('images/24.png'); height: 250px; width: 170px;"></div>
             </div>
-       </div>
-       <div class="box9 box">
-        <div class="box-content">
-          <h2>Formal Trouser</h2> 
-          <div class="box-img" style="background-image: url('images/10.webp');"></div>
-          <p><a href="#">See more</a></p>
         </div>
-     </div>
-     <div class="box10 box">
-         <div class="box-content">
-             <h2>Men Sexy T-Shirts</h2> 
-            <div class="box-img" style="background-image: url('images/11.webp');"></div>
-            <p><a href="#">See more</a></p>
-         </div>
-     </div>
-     <div class="box11 box">
-         <div class="box-content">
-             <h2>T-Shirts</h2> 
-             <div class="box-img" style="background-image: url('images/12.jpg');"></div>
-             <p><a href="#">See more</a></p>
-         </div>
-     </div>
-     <div class="box12 box">
-          <div class="box-content">
-             <h2>Mens Checks Casual Shirt</h2> 
-             <div class="box-img" style="background-image: url('images/13.webp');"></div>
-            <p><a href="#">See more</a></p>
-         </div>
-      </div>
-      <div class="box13 box">
-        <div class="box-content">
-          <h2>Apple MXD13HN/A MacBook Air </h2> 
-          <div class="box-img" style="background-image: url('images/17.jpeg');"></div>
-          <p><a href="#">See more</a></p>
+        <div class="box7 box">
+            <div class="box-content">
+                <h2>New Arrival in Toys</h2>
+                <div class="box-img" style="background-image: url('images/box7_image.jpg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
         </div>
-     </div>
-     <div class="box14 box">
-         <div class="box-content">
-             <h2>TCL 98 Inches  Google LED TV</h2> 
-            <div class="box-img" style="background-image: url('images/18.jpeg');"></div>
-            <p><a href="#">See more</a></p>
-         </div>
-     </div>
-     <div class="box15 box">
-         <div class="box-content">
-             <h2>Apple iPhone 15 Pro 1 TB</h2> 
-             <div class="box-img" style="background-image: url('images/14.jpeg');"></div>
-             <p><a href="#">See more</a></p>
-         </div>
-     </div>
-     <div class="box16 box">
-          <div class="box-content">
-             <h2>Samsung S24+ 5G </h2> 
-             <div class="box-img" style="background-image: url('images/15.jpeg');"></div>
-            <p><a href="#">See more</a></p>
-         </div>
-      </div>
-
-
+        <div class="box8 box">
+            <div class="box-content">
+                <h2>Discover fashion trends</h2>
+                <div class="box-img" style="background-image: url('images/box8_image.jpg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box-middle box">
+            <h2 class="para">Best Sellers in Kitchen, Dining & Dresses</h2>
+            <div class="mybox">
+                <div class="middle-img" style="background-image: url('images/13.jpg'); height: 140px; width: 160px;"></div>
+                <div class="middle-img" style="background-image: url('images/product_img.jpg'); height: 185px; width: 175px;"></div>
+                <div class="middle-img" style="background-image: url('images/20.jpg'); height: 180px; width: 160px;"></div>
+                <div class="middle-img" style="background-image: url('images/21.jpg'); height: 140px; width: 200px;"></div>
+                <div class="middle-img" style="background-image: url('images/22.jpg'); height: 190px; width: 170px;"></div>
+                <div class="middle-img" style="background-image: url('images/24.png'); height: 250px; width: 170px;"></div>
+            </div>
+        </div>
+        <div class="box9 box">
+            <div class="box-content">
+                <h2>Formal Trouser</h2>
+                <div class="box-img" style="background-image: url('images/10.webp');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box10 box">
+            <div class="box-content">
+                <h2>Men Sexy T-Shirts</h2>
+                <div class="box-img" style="background-image: url('images/11.webp');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box11 box">
+            <div class="box-content">
+                <h2>T-Shirts</h2>
+                <div class="box-img" style="background-image: url('images/12.jpg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box12 box">
+            <div class="box-content">
+                <h2>Mens Checks Casual Shirt</h2>
+                <div class="box-img" style="background-image: url('images/13.webp');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box13 box">
+            <div class="box-content">
+                <h2>Apple MXD13HN/A MacBook Air</h2>
+                <div class="box-img" style="background-image: url('images/17.jpeg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box14 box">
+            <div class="box-content">
+                <h2>TCL 98 Inches Google LED TV</h2>
+                <div class="box-img" style="background-image: url('images/18.jpeg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box15 box">
+            <div class="box-content">
+                <h2>Apple iPhone 15 Pro 1 TB</h2>
+                <div class="box-img" style="background-image: url('images/14.jpeg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
+        <div class="box16 box">
+            <div class="box-content">
+                <h2>Samsung S24+ 5G</h2>
+                <div class="box-img" style="background-image: url('images/15.jpeg');"></div>
+                <p><a href="#">See more</a></p>
+            </div>
+        </div>
     </div>
-
     <footer>
         <div class="foot-panel1">
             Back to top
         </div>
         <div class="foot-panel2">
             <ul>
-                <p>Get to Know us</p>
+                <p>Get to Know Us</p>
                 <a>Careers</a>
                 <a>Blog</a>
-                <a> About Amazon</a>
-                <a> Investor Relations</a>
-                <a> Amazon Devices</a>
-                <a> Amazon Science</a>             
+                <a>About Amazon</a>
+                <a>Investor Relations</a>
+                <a>Amazon Devices</a>
+                <a>Amazon Science</a>
             </ul>
             <ul>
-                <p>Get to Know us</p>
-                <a>Careers</a>
-                <a>Blog</a>
-                <a> About Amazon</a>
-                <a> Investor Relations</a>
-                <a> Amazon Devices</a>
-                <a> Amazon Science</a>             
+                <p>Connect with Us</p>
+                <a>Facebook</a>
+                <a>Twitter</a>
+                <a>Instagram</a>
             </ul>
             <ul>
-                <p>Get to Know us</p>
-                <a>Careers</a>
-                <a>Blog</a>
-                <a> About Amazon</a>
-                <a> Investor Relations</a>
-                <a> Amazon Devices</a>
-                <a> Amazon Science</a>             
+                <p>Make Money with Us</p>
+                <a>Sell on Amazon</a>
+                <a>Sell under Amazon Accelerator</a>
+                <a>Amazon Global Selling</a>
+                <a>Become an Affiliate</a>
             </ul>
             <ul>
-                <p>Get to Know us</p>
-                <a>Careers</a>
-                <a>Blog</a>
-                <a> About Amazon</a>
-                <a> Investor Relations</a>
-                <a> Amazon Devices</a>
-                <a> Amazon Science</a>             
+                <p>Let Us Help You</p>
+                <a>Your Account</a>
+                <a>Returns Centre</a>
+                <a>100% Purchase Protection</a>
+                <a>Amazon App Download</a>
+                <a>Help</a>
             </ul>
         </div>
-
         <div class="foot-panel3">
             <div class="logo"></div>
         </div>
         <div class="foot-panel4">
             <div class="pages">
-                <a>Condition</a>
+                <a>Conditions of Use</a>
                 <a>Privacy Notice</a>
                 <a>Your Ads Privacy Choices</a>
             </div>
@@ -256,7 +698,11 @@
             </div>
         </div>
     </footer>
-
-      <script src="script.js"></script>
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+            document.querySelector('.panel').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
